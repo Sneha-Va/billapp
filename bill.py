@@ -1,5 +1,6 @@
 import mysql.connector
 import sys 
+from tabulate import tabulate
 try:
     mydb=mysql.connector.connect(host='localhost',user='root',password='',database='hoteldb')
 except mysql.connector.Error as e:
@@ -80,9 +81,10 @@ while(True):
         print("view all transaction")
         date=input("enter the date(yyyy-mm-d)")
         try:
-            sql="SELECT * FROM `billing` WHERE `date`='"+date+"'"
+            sql="SELECT `id`, `name`, `phoneno`, `amount`, `date` FROM `billing` WHERE `date`='"+date+"'"
             mycursor.execute(sql)
             result=mycursor.fetchall()
+            print(tabulate(result,headers=["name","phoneno","amount","date"],tablefmt="psql"))
         except mysql.connector.Error as e:
             sys.exit("connection error")
         print(result)
@@ -93,6 +95,7 @@ while(True):
             sql="SELECT SUM(`amount`) FROM `billing` WHERE `date`='"+date+"'"
             mycursor.execute(sql)
             result=mycursor.fetchall()
+            print(tabulate(result,headers=["date"],tablefmt="psql"))
             print(result)
         except mysql.connector.Error as e:
             sys.exit("connection error")
@@ -105,6 +108,7 @@ while(True):
             sql="SELECT SUM(`amount`) FROM `billing` WHERE `date` BETWEEN '"+date1+"' AND '"+date2+"'"
             mycursor.execute(sql)
             result=mycursor.fetchall()
+            print(tabulate(result,headers=["amount"],tablefmt="psql"))
         except mysql.connector.Error as e:
             sys.exit("transcation  error")
         print(result)
