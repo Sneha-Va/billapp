@@ -13,7 +13,9 @@ while(True):
     print('5.biriyani...140')
     print('6. generate bill')
     print('7.view all transaction')
-    print('')
+    print('8.day wise transcation')
+    print('9.transaction summary')
+    print('10. exit')
     choice=int(input("enter the choice"))
     if(choice==1):
         print("added tea")
@@ -61,7 +63,7 @@ while(True):
         for i in l1:
             l.remove(i)
             amount = count
-        # #print(f'Total amount {count} ')
+         #print(f'Total amount {count} ')
         sql = sql="INSERT INTO `billing`( `name`, `phoneno`, `amount`, `date`) VALUES (%s,%s,%s,now())"
         data = (name,phoneno,amount)
         mycursor.execute(sql,data)
@@ -69,4 +71,11 @@ while(True):
         print('data inserted ')
     
     elif(choice==7):
+        print("view all transaction")
+        date=input("enter the date(yyyy-mm-d)")
+        sql="SELECT * FROM `billing` WHERE `date`='"+date+"'"
+        mycursor.execute(sql)
+        result=mycursor.fetchall()
+        print(result)
+    elif(choice==10):
         break
