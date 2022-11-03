@@ -77,5 +77,22 @@ while(True):
         mycursor.execute(sql)
         result=mycursor.fetchall()
         print(result)
+    elif(choice==8):
+        print("day wise transcation")
+        date=input("enter the date((yyyy-mm-d)")
+        sql="SELECT `date` SUM(amount) FROM `billing` WHERE `date`='"+date+"'"
+        mycursor.execute(sql)
+        result=mycursor.fetchall()
+        print(result)
+    elif(choice==8):
+        print("transaction summary")
+        date1=input("enter date")
+        date2=input("enter date")
+        sql="SELECT `date` SUM(amount) FROM `billing` BETWEEN `"+date1+' AND"+date2+"'"
+        mycursor.execute(sql)
+        result=mycursor.fetchall()
+        print(result)
+        
+        
     elif(choice==10):
         break
