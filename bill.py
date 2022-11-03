@@ -22,6 +22,11 @@ while(True):
         print("total=",total)
     elif(choice==2):
         print("juice added")
+        qty=int(input("enter the quandity"))
+        total=20*qty
+        item.append("juice x"+str(qty))
+        print("quantity=",qty)
+        print("total=",total)
     elif(choice==3):
         print("coffee added")
     elif(choice==4):
